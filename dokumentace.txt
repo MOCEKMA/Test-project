@@ -1,0 +1,25 @@
+
+
+Program spusťte v prostředí jazyka python. Řeší křížovky kdo nikdy žádnou neřešil tak ať vyzkouší a nejspíš pro něj bude srozumitelnější následující text.
+
+Návod k použití:
+
+Vytvořte v adresáři programu soubor s názvem nonogram_zadani.txt
+Přepiště do něj hodnoty vaší křížovky následujicím způsobem:
+čísla v každém sloupci napiště oddělená mezerami, každý sloupec na nový řádek.
+Poté jeden prázdný řádek a totéž s čísly v řádcích. Zakončete jedním či více prázdnymi řádky. Soubor uložte.
+Poté spusťte a program už sám nonogram vyřeší.
+
+
+Struktura:
+
+Mřížka křížovky je reprezentována 2-rozměrným polem (seznamem) do který je vyplněn třemi hodnotami - "bílá", "černá", "nevyplněno". Zadání je také uspořádáno do dvou 2-rozměrných polí. (columns, rows)
+
+Samotný běh zajišťuje funkce "pfioavc" a funkce "policko".
+
+Policko dostane na vstup konkrétní pole celku s hodnotami a pole s čísly zadání (tj. čísla určující jaké vybarvené úseky se mají do celku vměstnat). Výstupem je seznam indexů které jsou určitě bílé a seznam těch které jsou určitě černé. Navíc vrací počet možností jak lze celek doplnit aby vyhovoval číslům zadání. (údaj se použíje k určení chyby)šš
+Funkce na principu rekurze volá sebe samu s různým množstvím políček vyplněných "bílou" a rekurze se uzavírá právě tehdy když dojde ke sporu se zadáním (zkoušení nevhodné kombinace) anebo řádek vyhovuje a je zcela vyplněn.
+Jeho výstup pak projde přes triviální funkci pro rozdělení vyplněného řádku.
+
+
+"Projdi" používá frontu sloupců/řádků (dále jen "celky") které byly změněny. Pro každý celek zavolá výše popsanou funkci policko a z ní doplní do společného pole stav mřížky plus přidá do fronty indexy přepsaných políček (celky kolmé na ten aktuální).
